@@ -1,5 +1,12 @@
 public class PrimeiroTeste {
 	
+	private static String nome;
+	private static String sobrenome;
+	private static int idade;
+	private static float salario;
+	private static boolean java;
+	private static int qteMeses;
+	
 	private static boolean validar(int qtde){
 		if (qtde == 6){
 			return true;
@@ -8,36 +15,48 @@ public class PrimeiroTeste {
 		}
 		
 	}
-	
+
+	private static int calcularAnoNascimento(int idade){
+		return 2021 - idade;
+	}
+
+	private static float calcularSalarioTotal(float salario, int qteMeses){
+		return salario * qteMeses;
+	}
+
+	private static String definirSituacao(int idade){
+		if(idade < 50){
+			return "Iniciante";
+		}
+		return "Veterano";
+	}
+
+	private static String definirStatus(float salarioTotal){
+		if(salarioTotal > 1000){
+			return "Estavel";
+		}
+		return "Instavel";
+	}
+
+	private static void tratarParametros(String[] args){
+		nome = args[0];
+		sobrenome = args[1];
+		idade = Integer.valueOf(args[2]);
+		salario = Float.valueOf(args[3]);
+		java = Boolean.valueOf(args[4]);
+		qteMeses = Integer.valueOf(args[5]);
+	}	
+
 	public static void main(String[] args) {	
 		System.out.println("Hello, World");
 
-		//if(args.length == 6){
 		if(validar(args.length)){
-			String nome = args[0];
-			String sobrenome = args[1];
-			int idade = Integer.valueOf(args[2]);
-			float salario = Float.valueOf(args[3]);
-			boolean java = Boolean.valueOf(args[4]);
-			int qteMeses = Integer.valueOf(args[5]);
-		
-			int anoNascimento = 2021 - idade;
-			float salarioTotal = salario * qteMeses;
 
-			String situacao;
-
-			if(idade < 50){
-				situacao = "Iniciante"; 
-			} else{
-				situacao = "Veterano"; 
-			}
-
-			String status;
-			if(salarioTotal > 1000){
-				status = "Estavel";	
-			} else {
-				status = "Instavel";
-			}
+			tratarParametros(args);
+			int anoNascimento = calcularAnoNascimento(idade);
+			float salarioTotal = calcularSalarioTotal(salario, qteMeses);
+			String situacao = definirSituacao(idade);
+			String status = definirStatus(salarioTotal);
 			
 
 			System.out.println("Nome: " + nome);
